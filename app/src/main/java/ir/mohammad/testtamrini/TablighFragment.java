@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ir.mohammad.testtamrini.Adapter.FiilteerAdapter;
@@ -19,8 +20,8 @@ import ir.mohammad.testtamrini.model.Pishnahad;
 
 public class TablighFragment extends Fragment {
 
-    private List<Fiilteer>fiilteers;
-    private List<Pishnahad>pishnahads;
+    private List<Fiilteer>fiilteers=new ArrayList<>();
+    private List<Pishnahad>pishnahads=new ArrayList<>();
     private PishnahadAdapter pishnahadAdapter;
     private FiilteerAdapter fiilteerAdapter;
     private RecyclerView recyclerViewfilter;
