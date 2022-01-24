@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Tag", "onErrorResponse: " + error.getMessage());
-                Toast.makeText(getContext(), "khata da barghari internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "khata da barghari internet mibashad", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -114,7 +114,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
         queue.add(stringRequest);
 
         return view;
