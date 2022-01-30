@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    NavigationView navigationView;
+    NavigationView navigationdrawer;
 
     private static final String TAG = "MainActivity";
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawerlayout);
-        navigationView = findViewById(R.id.nav);
+        navigationdrawer = findViewById(R.id.nav);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -39,11 +39,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView = findViewById(R.id.bottomnavigation);
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
         getSupportFragmentManager().beginTransaction().replace(R.id.FragmentLayout,new HomeFragment()).commit();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationdrawer.setNavigationItemSelectedListener(this);
 
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
             openFragment(new HomeFragment());
             return true;
-            }else if (item.getItemId()== R.id.chat){
+        }else if (item.getItemId()== R.id.chat){
             Toast.makeText(MainActivity.this, "chat", Toast.LENGTH_SHORT).show();
             openFragment(new ChatFragment());
             return true;
@@ -63,14 +69,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if (item.getItemId()== R.id.Profile){
             Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
             openFragment(new TablighFragment());
-            return true;
         }else if (item.getItemId()== R.id.setting){
             Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
             openFragment(new TablighFragment());
-            return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+
+
     private void openFragment(Fragment fragment) {
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.FragmentLayout,fragment);
